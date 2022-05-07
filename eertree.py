@@ -1,17 +1,17 @@
 class ENode():
 	'A Node in an Eertree'
-	def __init__(self, len=0, sLink = None):
+	def __init__(self, len=0, sLink = None, content = ""):
 		self.dirEdges = dict() 
 		self.suffixLink = sLink
 		self.len = len
-
+		self.content = content
  
 class Eertree():
 	'Our Eertree'
 	def __init__(self) -> None:
 		self.nodes = []
 		# two initial root nodes
-		self.imgRoot = ENode(len = -1); self.imgRoot.suffixLink = self.imgRoot;
+		self.imgRoot = ENode(len = -1, content = None); self.imgRoot.suffixLink = self.imgRoot;
 		self.emptyRoot = ENode(len = 0, sLink = self.imgRoot)
  
 		# Initialize empty tree
@@ -39,11 +39,11 @@ class Eertree():
  
 		if createANewNode:
 			if Q.len == -1:
-				P = ENode(len = Q.len + 2, sLink = self.emptyRoot)
+				P = ENode(len = Q.len + 2, sLink = self.emptyRoot, content = a)
 				# # if P = a, create the suffix suffixLink (P,0)
 				# P.suffixLink = self.emptyRoot
 			else:
-				P = ENode(len = Q.len + 2, sLink = self.get_max_suffix_pal(Q.suffixLink, a).dirEdges[a])
+				P = ENode(len = Q.len + 2, sLink = self.get_max_suffix_pal(Q.suffixLink, a).dirEdges[a], content = f"{a}{Q.content}{a}")
 				# It remains to create the suffix suffixLink from P if |P|>1. Just
 				# continue traversing suffix-palindromes of T starting with the suffix 
 				# suffixLink of Q.
@@ -70,14 +70,19 @@ class Eertree():
 			self.get_sub_palindromes(nd2, nodesToHere+[nd2], charsToHere+[lnkName], result)
  
 		#Reconstruct based on charsToHere characters.
-		if id(nd) != id(self.imgRoot) and id(nd) != id(self.emptyRoot): #Don't print for root nodes
+		if nd != self.imgRoot and nd != self.emptyRoot: #Don't print for root nodes
 			tmp = "".join(charsToHere)
-			if id(nodesToHere[0]) == id(self.emptyRoot): #Even string
+			if nodesToHere[0] == self.emptyRoot: #Even string
 				assembled = tmp[::-1] + tmp
 			else: #Odd string
 				assembled = tmp[::-1] + tmp[1:]
 			result.append(assembled)
  
+	def printNodes(self):
+		# map(lambda i: print(i.content), self.nodes) 
+		# 'map()' Not Working (Using Loop Now)
+		for node in self.nodes:
+			print(node.content)
  
 if __name__== "__main__":
 
@@ -92,7 +97,7 @@ if __name__== "__main__":
  
 	print ("Processing finished!")
 	print ("Number of unique sub-palindromes:", len(eertree.nodes))
- 
+
 	#Traverse tree to find sub-palindromes
 	result = []
 	eertree.get_sub_palindromes(eertree.imgRoot, [eertree.imgRoot], [], result) #Odd length words
