@@ -12,7 +12,7 @@ class Eertree():
 		self.nodes = []
 		# two initial root nodes
 		self.imgRoot = ENode(len = -1, content = None); self.imgRoot.suffixLink = self.imgRoot;
-		self.emptyRoot = ENode(len = 0, sLink = self.imgRoot)
+		self.emptyRoot = ENode(sLink = self.imgRoot)
  
 		# Initialize empty tree
 		self.S = [0] # accumulated input string, T=S[0..n]
@@ -94,12 +94,11 @@ if __name__== "__main__":
 	eertree = Eertree()
 	for char in string:
 		eertree.add(char)
- 
-	print ("Processing finished!")
-	print ("Number of unique sub-palindromes:", len(eertree.nodes))
-
 	#Traverse tree to find sub-palindromes
 	result = []
 	eertree.get_sub_palindromes(eertree.imgRoot, [eertree.imgRoot], [], result) #Odd length words
 	eertree.get_sub_palindromes(eertree.emptyRoot, [eertree.emptyRoot], [], result) #Even length words
+	
+	print ("Processing finished!")
+	print ("Number of unique sub-palindromes:", len(eertree.nodes))
 	print ("Unique Sub-palindromes:", result)
