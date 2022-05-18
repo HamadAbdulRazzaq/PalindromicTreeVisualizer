@@ -121,7 +121,8 @@ class Eertree():
 			print('Length:', node.len)
 			print('Suffix Links:', node.suffixLink)
 			print('Direct Edges:', node.dirEdges,  sep="\n")
- 
+	def draw(self,screen):
+		pass
 
 
 # print ("Enter the desired string below:")

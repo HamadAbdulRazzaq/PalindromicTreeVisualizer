@@ -1,1 +1,1 @@
-eertree
+maxSufT
