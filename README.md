@@ -1,5 +1,5 @@
 # Data Structures II Project - Palindromic Tree (eertree)
-Palindromic Trees (also know as eertree) are efficient data structures which can be used to store all the subpalindromes in a string in just $O(nlog(\Sigma) ))$ where:
+Palindromic Trees (also know as eertree) are efficient data structures which can be used to store all the sub-palindromes in a string in just $O(nlog(\Sigma) ))$ where:
 - $n:$ Size of the input string.
 - $\Sigma :$ Size of the Alphabet <br/>
 In English, the Size of the alphabet is 26 which is $O(1)$ so in that case the complexity becomes $O(n)$
@@ -8,7 +8,7 @@ A Palindromic Tree can be used for many problems regarding the palindromes such 
 - Finding the sub-palindromes inside a string
 - Finding the longest palindrome inside the string
 - Finding all unique palindromes <br/>
-For more informtation regarding the algorithm of constructing eertree, refer to [this link](https://medium.com/@alessiopiergiacomi/eertree-or-palindromic-tree-82453e75025b)
+For more information regarding the algorithm of constructing eertree, refer to [this link](https://medium.com/@alessiopiergiacomi/eertree-or-palindromic-tree-82453e75025b)
 ## Our Application
 Our Project aimed at visualizing the construction of the palindromic tree for any given input string. It is a step-by-step colored visualization which insert each nodes and shows all steps by coloring.
 ## How to Operate
