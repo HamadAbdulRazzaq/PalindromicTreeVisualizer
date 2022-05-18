@@ -185,7 +185,7 @@ def update(eertree, pdg, subtrees, padding, edges, suffix_edges, col_width):
                 a += 2
         for j in d:
             pc = parent_childs(eertree, j)
-            # print("pc", pc)
+            print("pc", pc)
             padding = (len(pc[1])-1)
             previous = pdg[pc[0]]
             if padding > 0:
@@ -275,6 +275,7 @@ def add2(self, Q, a):
     createANewNode = not a in Q.dirEdges
     print(createANewNode)
     if createANewNode:
+
         if Q.len == -1: # If Q is ImagRoot
             P = ENode(len = Q.len + 2, sLink = None, content = a)
 				# # if P = a, create the suffix suffixLink (P,0)
@@ -336,7 +337,7 @@ def mainmenu():
     yoff = 0
     edges_Rect = {}
     nodes_Rect = {}
-    closed = False 
+    closed =  False 
     traversed = []
     on_screen = ""
     center_offset = (240, 120)
@@ -399,7 +400,11 @@ def mainmenu():
                     c0s += col_width[x]
                 # if strg == '-1':
                 #     print(strg, pdg[i], c0s)
-                c0e = c0s + col_width[pdg[i]]
+                # if i == '-1':
+                #     i = None
+                # elif i == '0':
+                #     i = ''
+                c0e = c0s + col_width.get(pdg[i], 0)
                 c0c = (c0s + c0e)/2
                 
                 text = font.render(strg, True, white)
@@ -592,8 +597,11 @@ def mainmenu():
                         elif not(stage1) and stage2:
                             print("here")
                             dm = add2(eertree, d1[0], string[idx-1])
-                            current_node = dm[0]
-                            P = dm[1]
+                            if dm == None:
+                                pass
+                            else:
+                                current_node = dm[0]
+                                P = dm[1]
                             stage2 = False
                             stage3 = True
                             print('stage 2')
@@ -615,6 +623,8 @@ def mainmenu():
                         
                         update(eertree, pdg, subtrees, padding, edges, suffix_edges, col_width)
                         col_width = set_col_width(pdg, 60)
+                        print(col_width)
+                        print(pdg)
                     
                 if event.key == pygame.K_ESCAPE:
                     pygame.quit()
