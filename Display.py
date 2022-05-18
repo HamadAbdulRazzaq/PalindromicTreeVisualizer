@@ -236,7 +236,7 @@ pink = (252,15,192)
 screen = pygame.display.set_mode((width, height))
 pygame.display.set_caption("Palindromic Tree")
 screen.fill(black)
-# def prnt(Widget, Menu,):
+# def prnt(Widget, Men):
 #     global cnt
 #     print(cnt)
 def add3(self, startNode, a, c_node, Q):
